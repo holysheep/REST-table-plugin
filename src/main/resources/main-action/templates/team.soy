@@ -1,0 +1,33 @@
+{namespace JIRA.Templates.Team}
+/**
+ * @param team
+ */
+{template .teamRow}
+
+<td class="project-config-team-name">
+    {$team.name}
+</td>
+
+<td class="project-config-team-created">
+    {$team.created}
+</td>
+
+<td class="jira-restfultable-operations"></td>
+<td class="project-config-throbber"></td>
+
+{/template}
+
+/**
+* @param team
+*/
+
+{template .editTeamRow}
+
+<td class="project-config-team-name">
+    <input name="name" id="project-config-team-name-input" type="text" class="text" value="{$team.name ? $team.name : ''}"  />
+</td>
+
+<td class="project-config-team-created">
+    {$team.created ? $team.created : ''}
+</td>
+{/template}

@@ -1,0 +1,62 @@
+<html xmlns="http://www.w3.org/1999/html">
+<head>
+    <title>J-Tricks Demo</title>
+    <meta name="decorator" content="atl.admin"/>
+    <meta name="projectKey" content="$project.getKey()"/>
+    <meta name="projectId" content="$project.getId()"/>
+    $webResourceManager.requireResourcesForContext("my-resources")
+</head>
+<body>
+
+<div class="aui-page-panel">
+    <div class="aui-page-panel-inner">
+        <div class="aui-page-panel-nav">
+            <nav class="aui-navgroup aui-navgroup-vertical">
+                <div class="aui-navgroup-primary">
+                    <div class="admin-menu-links">
+                        <ul class="aui-nav">
+                            <li class="aui-nav-selected">
+                                <a href="/secure/TabA.jspa" id="a-link"> A tab </a></li>
+                            <li><a href="/secure/TabB.jspa" id="b-link"> B tab</a></li>
+                            <li><a href="/secure/TabC.jspa" id="c-link"> C tab</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <section class="aui-page-panel-content">
+            <form action="/secure/LabAction!add.jspa">
+                <input type="text" name="name"/>
+                <input type="submit" value="OK"/>
+            </form>
+            <table class="aui" id="project-config-teams-table">
+                <thead>
+                <th>String</th>
+                <th>Date</th>
+                <th>Action</th>
+                </thead>
+                <tbody>
+                    #foreach($team in $teams)
+                    <tr>
+                        <td>
+                            $team.getID()
+                        </td>
+                        <td>
+                        </td>
+                        <td>
+                            $team.getName()
+                        </td>
+                        <td>
+                        </td>
+                        <td>
+                            $team.getCreated()
+                        </td>
+                    </tr>
+                    #end
+                </tbody>
+            </table>
+        </section>
+    </div>
+</div>
+</body>
+</html>
