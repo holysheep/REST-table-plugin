@@ -30,7 +30,7 @@ public class LabAction extends JiraWebActionSupport {
         String name = getHttpRequest().getParameterValues("name")[0];
         Team team = new TeamImpl(name);
         DAOFactory.getInstance().getTeamDAO().addTeam(team);
-        ServletActionContext.getResponse().sendRedirect("/secure/LabAction.jspa");
+        ServletActionContext.getResponse().sendRedirect("/jira/secure/LabAction.jspa");
         System.out.println("==========");
         return NONE;
     }

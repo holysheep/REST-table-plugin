@@ -32,14 +32,17 @@
         </transformation>
     </web-resource>
 
-    <!-- publish our component -->
-    <servlet name="adminUI" class="com.atlassian.test.testplugin.MyPluginServlet" key="test">
-        <url-pattern>/test</url-pattern>
-    </servlet>
+    <!--&lt;!&ndash; publish our component &ndash;&gt;-->
+    <!--<servlet name="adminUI" class="com.atlassian.test.testplugin.pojo.MyPluginServlet" key="test">-->
+        <!--<url-pattern>/test</url-pattern>-->
+    <!--</servlet>-->
     <!-- import from the product container -->
     <component-import key="applicationProperties" interface="com.atlassian.sal.api.ApplicationProperties"/>
     <component-import key="jiraAuthenticationContext" interface="com.atlassian.jira.security.JiraAuthenticationContext" />
     <component-import key="userManager" interface="com.atlassian.sal.api.user.UserManager"/>
+
+    <!-- i had a stupid bean error on it :/ -->
+    <component-import key="xsrfInvocationChecker" interface="com.atlassian.jira.security.xsrf.XsrfInvocationChecker"/>
 
     <!-- component for ActiveObject -->
     <component-import key="ao" name="Active Objects components"
@@ -78,14 +81,6 @@
         <label key="atab.label"/>
         <link linkId="atab-link">/secure/TabAAction.jspa</link>
     </web-item>
-    <webwork1 key="tab-a" name="TabA" i18n-name-key="tab-a.name">
-        <description key="tab-a.description">The TabA Plugin</description>
-        <actions>
-            <action name="com.atlassian.test.jira.webwork.TabAAction" alias="TabA">
-                <view name="success">/tab-a/success.vm</view>
-            </action>
-        </actions>
-    </webwork1>
 
     <web-item name="Btab" i18n-name-key="btab.name" key="btab" section="project-config-group" weight="1000">
         <description key="btab.description">The Btab Plugin</description>
@@ -105,8 +100,5 @@
     <rest key="RestPlugin" path="/lab-plugin" version="1.0">
         <description>Provides REST plugin service</description>
     </rest>
-
-
-
 
 </atlassian-plugin>
