@@ -9,8 +9,6 @@ public interface TeamDAO {
     TeamEntity addTeam(Team team) throws Exception;
     TeamEntity[] getTeams() throws Exception;
 
-
     TeamEntity deleteTeam(long id) throws Exception;
-
-    TeamEntity updateTeam(long id, Team student) throws Exception;
+    TeamEntity updateTeam(long id, Team team) throws Exception;
 }

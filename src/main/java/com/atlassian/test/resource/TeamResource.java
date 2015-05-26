@@ -17,8 +17,7 @@ import java.util.List;
 
 @Path("project/teams")
 @Produces("application/json")
-
-public class TeamResource extends AbstractResource {
+public class TeamResource {
 
     @GET
     public Response getTeams(@QueryParam("id") String id) throws Exception {

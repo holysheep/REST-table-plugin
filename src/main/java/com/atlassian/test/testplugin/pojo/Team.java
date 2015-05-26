@@ -5,6 +5,4 @@ public interface Team {
 
      String getName();
      void setName(String name);
-
-
 }

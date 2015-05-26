@@ -7,7 +7,6 @@ import com.atlassian.test.testplugin.DAO.TeamDAO;
 import com.atlassian.test.testplugin.entity.TeamEntity;
 import com.atlassian.test.testplugin.pojo.Team;
 import net.java.ao.Query;
-
 import java.util.Date;
 
 public class TeamDAOImpl implements TeamDAO {
@@ -46,7 +45,6 @@ public class TeamDAOImpl implements TeamDAO {
     @Override
     public TeamEntity deleteTeam(final long id) throws Exception {
         return ao.executeInTransaction(new TransactionCallback<TeamEntity>(){
-
             @Override
             public TeamEntity doInTransaction() {
                 TeamEntity entity = ao.find(TeamEntity.class, Query.select().where("ID=?", id))[0];
@@ -59,7 +57,6 @@ public class TeamDAOImpl implements TeamDAO {
     @Override
     public TeamEntity updateTeam(final long id, final Team team) throws Exception {
         return ao.executeInTransaction(new TransactionCallback<TeamEntity>() {
-
             @Override
             public TeamEntity doInTransaction() {
                 TeamEntity entity = ao.find(TeamEntity.class, Query.select().where("ID=?", id))[0];

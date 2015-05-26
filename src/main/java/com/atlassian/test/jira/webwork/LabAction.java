@@ -1,5 +1,7 @@
 package com.atlassian.test.jira.webwork;
 
+import com.atlassian.jira.component.ComponentAccessor;
+import com.atlassian.jira.config.properties.APKeys;
 import com.atlassian.jira.project.Project;
 import com.atlassian.jira.web.action.JiraWebActionSupport;
 import com.atlassian.test.testplugin.DAO.DAOFactory;
@@ -28,7 +30,12 @@ public class LabAction extends JiraWebActionSupport {
         String name = getHttpRequest().getParameterValues("name")[0];
         Team team = new TeamImpl(name);
         DAOFactory.getInstance().getTeamDAO().addTeam(team);
-        ServletActionContext.getResponse().sendRedirect("/jira/secure/LabAction.jspa");
+        ServletActionContext.getResponse().sendRedirect("/secure/LabAction.jspa");
+        System.out.println("==========");
         return NONE;
+    }
+
+    public TeamEntity[] getTeams() {
+        return teams;
     }
 }

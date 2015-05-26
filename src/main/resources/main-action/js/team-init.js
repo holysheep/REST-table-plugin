@@ -2,7 +2,7 @@ jQuery(function() {
     var $table = AJS.$("#project-config-teams-table");
 
     function getResourceURL() {
-        return contextPath + "/rest/lab-plugin/1.0/project/teams";
+        return contextPath + "/rest/lab-plugin/1.0/teams";
     }
     function getTeam(callback) {
         JIRA.SmartAjax.makeRequest({

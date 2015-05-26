@@ -13,12 +13,12 @@ public class TeamImpl implements Team {
 
     @Override
     public String getName() {
-        return null;
+        return name;
     }
 
     @Override
     public void setName(String name) {
-
+        this.name = name;
     }
 
 }

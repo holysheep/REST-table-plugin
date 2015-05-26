@@ -1,13 +1,12 @@
 <html xmlns="http://www.w3.org/1999/html">
 <head>
-    <title>J-Tricks Demo</title>
+    <title>Laboratory plugin</title>
     <meta name="decorator" content="atl.admin"/>
     <meta name="projectKey" content="$project.getKey()"/>
     <meta name="projectId" content="$project.getId()"/>
     $webResourceManager.requireResourcesForContext("my-resources")
 </head>
 <body>
-
 <div class="aui-page-panel">
     <div class="aui-page-panel-inner">
         <div class="aui-page-panel-nav">
@@ -25,13 +24,14 @@
             </nav>
         </div>
         <section class="aui-page-panel-content">
-            <form action="/secure/LabAction!add.jspa">
+            <form action="/jira/secure/LabAction!add.jspa">
                 <input type="text" name="name"/>
-                <input type="submit" value="OK"/>
+                <input type="submit" value="Add"/>
             </form>
             <table class="aui" id="project-config-teams-table">
                 <thead>
-                <th>String</th>
+                <th>Id</th>
+                <th>Name</th>
                 <th>Date</th>
                 <th>Action</th>
                 </thead>
@@ -42,14 +42,12 @@
                             $team.getID()
                         </td>
                         <td>
-                        </td>
-                        <td>
                             $team.getName()
                         </td>
                         <td>
+                            $team.getCreated()
                         </td>
                         <td>
-                            $team.getCreated()
                         </td>
                     </tr>
                     #end
