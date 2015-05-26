@@ -24,6 +24,7 @@ jQuery(function() {
             entries: teams,
             noEntriesMsg: 'There are currently no teams',
             views: {
+                editRow: JIRA.Admin.Student.EditTeamRow,
                 row: JIRA.Admin.Team.TeamRow
             }
         });

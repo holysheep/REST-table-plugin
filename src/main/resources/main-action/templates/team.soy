@@ -5,6 +5,8 @@
 {template .teamRow}
 
 <td class="project-config-team-name">
+<span class="jira-restfultable-editable" data-field-name="name">
+    <span class="icon icon-edit-sml"></span>
     {$team.name}
 </td>
 
@@ -13,6 +15,12 @@
 </td>
 
 <td class="jira-restfultable-operations"></td>
+  <ul class="first ops">
+        <li class="last">
+            <a class="project-config-team-delete button first last" href="#">{getText('common.words.delete')}</a>
+        </li>
+    </ul>
+</td>
 <td class="project-config-throbber"></td>
 
 {/template}

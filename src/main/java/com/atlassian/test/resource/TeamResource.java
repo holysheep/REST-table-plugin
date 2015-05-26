@@ -1,6 +1,5 @@
 package com.atlassian.test.resource;
 
-import com.atlassian.jira.gadgets.system.AbstractResource;
 import com.atlassian.jira.util.json.JSONException;
 import com.atlassian.jira.util.json.JSONObject;
 import com.atlassian.test.testplugin.DAO.DAOFactory;
@@ -15,8 +14,8 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
 import java.util.List;
 
-@Path("project/teams")
-@Produces("application/json")
+@Path("teams")
+@Produces({"application/json"})
 public class TeamResource {
 
     @GET

@@ -8,16 +8,20 @@
         <param name="plugin-icon">images/pluginIcon.png</param>
         <param name="plugin-logo">images/pluginLogo.png</param>
     </plugin-info>
-    <!-- add our i18n resource -->
+
+    <!-- add i18n resource -->
     <resource type="i18n" name="i18n" location="testplugin"/>
 
-    <!-- add our web resources -->
-    <web-resource key="testplugin-resources" name="testplugin Web Resources">
-        <dependency>com.atlassian.auiplugin:ajs</dependency>
-        <resource type="download" name="testplugin.css" location="/css/testplugin.css"/>
-        <resource type="download" name="testplugin.js" location="/js/testplugin.js"/>
+    <!-- add web resources -->
+    <web-resource key="my-resources" name="testplugin Web Resources">
+
+        <dependency>com.atlassian.jira.jira-project-config-plugin:project-config-global</dependency>
         <resource type="download" name="images/" location="/images"/>
-        <context>testplugin</context>
+        <resource type="download" name="team-soy.js" location="main-action/templates/team.soy"/>
+        <resource type="download" name="TeamRow.js" location="main-action/js/TeamRow.js"/>
+        <resource type="download" name="EditTeamRow.js" location="main-action/js/EditTeamRow.js"/>
+        <resource type="download" name="team-init.js" location="main-action/js/team-init.js"/>
+        <context>my-resources</context>
 
         <!-- transformation for soy file-->
         <transformation extension="soy">
@@ -97,11 +101,6 @@
         </link>
     </web-item>
 
-    <web-resource key="my-resources">
-        <dependency>com.atlassian.jira.jira-project-config-plugin:project-config-global</dependency>
-        <resource type="download" name="team-init.js" location="main-action/js/team-init.js"/>
-        <context>my-resources</context>
-    </web-resource>
 
     <rest key="RestPlugin" path="/lab-plugin" version="1.0">
         <description>Provides REST plugin service</description>
