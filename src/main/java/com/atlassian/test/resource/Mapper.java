@@ -7,11 +7,9 @@ public class Mapper {
     public static XmlTeam toXmlTeam(TeamEntity entity) {
 
         XmlTeam team = new XmlTeam();
-
         team.id = entity.getID();
         team.name = entity.getName();
         team.created = entity.getCreated().toString();
-
         return team;
     }
 }

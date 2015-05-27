@@ -1,26 +1,30 @@
-package com.atlassian.test.resource;
+package com.atlassian.test.rest;
 
 import com.atlassian.jira.util.json.JSONException;
 import com.atlassian.jira.util.json.JSONObject;
+import com.atlassian.plugins.rest.common.security.AnonymousAllowed;
+import com.atlassian.test.resource.Mapper;
+import com.atlassian.test.resource.XmlTeam;
+import com.atlassian.test.resource.XmlTeams;
 import com.atlassian.test.testplugin.DAO.DAOFactory;
 import com.atlassian.test.testplugin.entity.TeamEntity;
-
-
 import com.atlassian.test.testplugin.pojo.Team;
 import com.atlassian.test.testplugin.pojo.impl.TeamImpl;
 import com.google.common.collect.Lists;
 
 import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.List;
 
-@Path("project/teams")
-@Produces({"application/json"})
+@Path("teams")
 public class TeamResource {
 
     @GET
-    public Response getTeams(@QueryParam("id") String id) throws Exception {
-
+    @AnonymousAllowed
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+//    @Path("/")
+    public Response getTeams() throws Exception {
         List<XmlTeam> xmlTeams = Lists.newArrayList();
         return Response.ok(new XmlTeams(xmlTeams.size(), xmlTeams)).build();
     }
@@ -50,7 +54,6 @@ public class TeamResource {
 
         String name;
         long id = Long.parseLong(idString);
-
         JSONObject jsonObject = new JSONObject(request);
         try {
             name = jsonObject.getString("name");

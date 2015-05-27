@@ -1,104 +1,89 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <atlassian-plugin key="${project.groupId}.${project.artifactId}" name="${project.name}" plugins-version="2">
-    <plugin-info>
-        <description>${project.description}</description>
-        <version>${project.version}</version>
-        <vendor name="${project.organization.name}" url="${project.organization.url}"/>
-        <param name="plugin-icon">images/pluginIcon.png</param>
-        <param name="plugin-logo">images/pluginLogo.png</param>
-    </plugin-info>
-
-    <!-- add i18n resource -->
-    <resource type="i18n" name="i18n" location="testplugin"/>
-
-    <!-- add web resources -->
-    <web-resource key="my-resources" name="testplugin Web Resources">
-
-        <dependency>com.atlassian.jira.jira-project-config-plugin:project-config-global</dependency>
-        <resource type="download" name="images/" location="/images"/>
-        <resource type="download" name="team-soy.js" location="main-action/templates/team.soy"/>
-        <resource type="download" name="TeamRow.js" location="main-action/js/TeamRow.js"/>
-        <resource type="download" name="EditTeamRow.js" location="main-action/js/EditTeamRow.js"/>
-        <resource type="download" name="team-init.js" location="main-action/js/team-init.js"/>
-        <context>my-resources</context>
-
-        <!-- transformation for soy file-->
-        <transformation extension="soy">
-            <transformer key="jiraSoyTransformer"/>
-        </transformation>
-        <transformation extension="js">
-            <transformer key="jsI18n"/>
-        </transformation>
-    </web-resource>
-
-    <!--&lt;!&ndash; publish our component &ndash;&gt;-->
-    <!--<servlet name="adminUI" class="com.atlassian.test.testplugin.pojo.MyPluginServlet" key="test">-->
-        <!--<url-pattern>/test</url-pattern>-->
-    <!--</servlet>-->
-    <!-- import from the product container -->
-    <component-import key="applicationProperties" interface="com.atlassian.sal.api.ApplicationProperties"/>
-    <component-import key="jiraAuthenticationContext" interface="com.atlassian.jira.security.JiraAuthenticationContext" />
-    <component-import key="userManager" interface="com.atlassian.sal.api.user.UserManager"/>
-
-    <!-- i had a stupid bean error on it :/ -->
-    <component-import key="xsrfInvocationChecker" interface="com.atlassian.jira.security.xsrf.XsrfInvocationChecker"/>
-
-    <!-- component for ActiveObject -->
-    <component-import key="ao" name="Active Objects components"
-                      interface="com.atlassian.activeobjects.external.ActiveObjects">
-        <description>Access to the Active Objects service</description>
-    </component-import>
-    <!-- ActiveObject module key -->
-    <ao key="ao-module">
-        <description>The module configuring the Active Objects service used by this plugin</description>
-        <entity>com.atlassian.test.testplugin.entity.TeamEntity</entity>
-    </ao>
-
-    <!-- component for DAOFactory -->
-    <component key="dao-factory" class="com.atlassian.test.testplugin.DAO.DAOFactory">
-    </component>
-
-    <!-- Laboratory top menu link -->
-    <web-item name="Laboratory" i18n-name-key="laboratory.name" key="lab-menu-link" section="system.top.navigation.bar"
-              weight="1000">
-        <description key="lab-menu-link.description">The Lab Menu Link Plugin</description>
-        <label key="lab-menu-link.label"/>
-        <link linkId="lab-menu-link-link">/secure/LabAction.jspa</link>
-    </web-item>
-    <webwork1 key="main-action" name="MainAction" i18n-name-key="main-action.name">
-        <description key="main-action.description">The LabAction Plugin</description>
-        <actions>
-            <action name="com.atlassian.test.jira.webwork.LabAction" alias="LabAction">
-                <view name="success">/main-action/success.vm</view>
-            </action>
-        </actions>
-    </webwork1>
-
-    <!-- LEFT TAB MENU-->
-    <web-item name="Atab" i18n-name-key="atab.name" key="atab" section="project-config-group" weight="1000">
-        <description key="atab.description">The Atab Plugin</description>
-        <label key="atab.label"/>
-        <link linkId="atab-link">/secure/TabAAction.jspa</link>
-    </web-item>
-
-    <web-item name="Btab" i18n-name-key="btab.name" key="btab" section="project-config-group" weight="1000">
-        <description key="btab.description">The Btab Plugin</description>
-        <label key="btab.label"/>
-        <link linkId="btab-link">https://www.yahoo.com/</link>
-    </web-item>
-
-    <web-item name="Ctab" i18n-name-key="ctab.name" key="ctab" section="project-config-group" weight="1000">
-        <description key="ctab.description">The Ctab Plugin</description>
-        <label key="ctab.label"/>
-        <link linkId="ctab-link">
-            https://developer.atlassian.com/docs/getting-started/plugin-modules/web-section-plugin-module
-        </link>
-    </web-item>
-
-
-    <rest key="RestPlugin" path="/lab-plugin" version="1.0">
-        <description>Provides REST plugin service</description>
-    </rest>
-
+  <plugin-info>
+    <description>${project.description}</description>
+    <version>${project.version}</version>
+    <vendor name="${project.organization.name}" url="${project.organization.url}"/>
+    <param name="plugin-icon">images/pluginIcon.png</param>
+    <param name="plugin-logo">images/pluginLogo.png</param>
+  </plugin-info>
+  <!-- add i18n resource -->
+  <resource type="i18n" name="i18n" location="testplugin"/>
+  <!-- add web resources -->
+  <web-resource key="my-resources" name="testplugin Web Resources">
+    <dependency>com.atlassian.jira.jira-project-config-plugin:project-config-global</dependency>
+    <resource type="download" name="images/" location="/images"/>
+    <resource type="download" name="team-soy.js" location="main-action/templates/team.soy"/>
+    <resource type="download" name="TeamRow.js" location="main-action/js/TeamRow.js"/>
+    <resource type="download" name="EditTeamRow.js" location="main-action/js/EditTeamRow.js"/>
+    <resource type="download" name="team-init.js" location="main-action/js/team-init.js"/>
+    <context>my-resources</context>
+    <!-- transformation for soy file-->
+    <transformation extension="soy">
+      <transformer key="jiraSoyTransformer"/>
+    </transformation>
+    <transformation extension="js">
+      <transformer key="jsI18n"/>
+    </transformation>
+  </web-resource>
+  <!--&lt;!&ndash; publish our component &ndash;&gt;-->
+  <!--<servlet name="adminUI" class="com.atlassian.test.testplugin.pojo.MyPluginServlet" key="test">-->
+  <!--<url-pattern>/test</url-pattern>-->
+  <!--</servlet>-->
+  <!-- publish our component -->
+  <component key="myPluginComponent" class="com.atlassian.test.testplugin.MyPluginComponentImpl" public="true">
+    <interface>com.atlassian.test.testplugin.MyPluginComponent</interface>
+  </component>
+  <!-- import from the product container -->
+  <component-import key="applicationProperties" interface="com.atlassian.sal.api.ApplicationProperties"/>
+  <!--<component-import key="jiraAuthenticationContext" interface="com.atlassian.jira.security.JiraAuthenticationContext"/>-->
+  <!--<component-import key="userManager" interface="com.atlassian.sal.api.user.UserManager"/>-->
+  <!-- component for ActiveObject -->
+  <component-import key="ao" name="Active Objects components" interface="com.atlassian.activeobjects.external.ActiveObjects">
+    <description>Access to the Active Objects service</description>
+  </component-import>
+  <!-- ActiveObject module key -->
+  <ao key="ao-module">
+    <description>The module configuring the Active Objects service used by this plugin</description>
+    <entity>com.atlassian.test.testplugin.entity.TeamEntity</entity>
+  </ao>
+  <!-- component for DAOFactory -->
+  <component key="dao-factory" class="com.atlassian.test.testplugin.DAO.DAOFactory"/>
+  <!-- Laboratory top menu link -->
+  <web-item name="Laboratory" i18n-name-key="laboratory.name" key="lab-menu-link" section="system.top.navigation.bar" weight="1000">
+    <description key="lab-menu-link.description">The Lab Menu Link Plugin</description>
+    <label key="lab-menu-link.label"/>
+    <link linkId="lab-menu-link-link">/secure/LabAction.jspa</link>
+  </web-item>
+  <webwork1 key="main-action" name="MainAction" i18n-name-key="main-action.name">
+    <description key="main-action.description">The LabAction Plugin</description>
+    <actions>
+      <action name="com.atlassian.test.jira.webwork.LabAction" alias="LabAction">
+        <view name="success">/main-action/success.vm</view>
+      </action>
+    </actions>
+  </webwork1>
+  <!-- LEFT TAB MENU-->
+  <web-item name="Atab" i18n-name-key="atab.name" key="atab" section="project-config-group" weight="1000">
+    <description key="atab.description">The Atab Plugin</description>
+    <label key="atab.label"/>
+    <link linkId="atab-link">/secure/TabAAction.jspa</link>
+  </web-item>
+  <web-item name="Btab" i18n-name-key="btab.name" key="btab" section="project-config-group" weight="1000">
+    <description key="btab.description">The Btab Plugin</description>
+    <label key="btab.label"/>
+    <link linkId="btab-link">https://www.yahoo.com/</link>
+  </web-item>
+  <web-item name="Ctab" i18n-name-key="ctab.name" key="ctab" section="project-config-group" weight="1000">
+    <description key="ctab.description">The Ctab Plugin</description>
+    <label key="ctab.label"/>
+    <link linkId="ctab-link">https://developer.atlassian.com/docs/getting-started/plugin-modules/web-section-plugin-module</link>
+  </web-item>
+  <rest key="team-resource" path="/teams" version="1.0">
+    <description>Provides REST plugin service</description>
+  </rest>
+  <rest name="My Rest Resource" i18n-name-key="my-rest-resource.name" key="my-rest-resource" path="/myrestresource" version="1.0">
+    <description key="my-rest-resource.description">The My Rest Resource Plugin</description>
+  </rest>
 </atlassian-plugin>
