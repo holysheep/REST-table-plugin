@@ -1,0 +1,61 @@
+<html>
+<head>
+    <title>Laboratory plugin Tab B</title>
+    <meta name="projectKey" content="$project.getKey()"/>
+    <meta name="projectId" content="$project.getId()"/>
+    $webResourceManager.requireResourcesForContext("my-resources")
+</head>
+<body>
+<br>
+<br>
+<div class="aui-page-panel">
+    <div class="aui-page-panel-inner">
+        <div class="aui-page-panel-nav">
+            <nav class="aui-navgroup aui-navgroup-vertical">
+                <div class="aui-navgroup-primary">
+                    <div class="admin-menu-links">
+                        <ul class="aui-nav">
+                            <li> <a href="/jira/secure/LabAction.jspa" id="a-link"> A tab </a></li>
+                            <li class="aui-nav-selected">
+                            <a href="/jira/secure/TabBAction.jspa" id="b-link"> B tab </a></li>
+                            <li><a href="/jira/secure/TabCAction.jspa" id="c-link"> C tab </a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <section class="aui-page-panel-content">
+            <form action="/jira/secure/TabBAction!add.jspa">
+                <input type="text" name="name"/>
+                <input type="submit" value="Add"/>
+            </form>
+            <table class="aui" id="project-config-teams-table">
+                <thead>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Date</th>
+                <th>Action</th>
+                </thead>
+                <tbody>
+                    #foreach($team in $teams)
+                    <tr>
+                        <td>
+                            $team.getID()
+                        </td>
+                        <td>
+                            $team.getName()
+                        </td>
+                        <td>
+                            $team.getCreated()
+                        </td>
+                        <td>
+                        </td>
+                    </tr>
+                    #end
+                </tbody>
+            </table>
+        </section>
+    </div>
+</div>
+</body>
+</html>

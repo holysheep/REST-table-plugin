@@ -1,6 +1,6 @@
 <html>
 <head>
-    <title>Laboratory plugin</title>
+    <title>Laboratory plugin Tab C</title>
     <meta name="projectKey" content="$project.getKey()"/>
     <meta name="projectId" content="$project.getId()"/>
     $webResourceManager.requireResourcesForContext("my-resources")
@@ -15,19 +15,19 @@
                 <div class="aui-navgroup-primary">
                     <div class="admin-menu-links">
                         <ul class="aui-nav">
-                            <li class="aui-nav-selected">
-                                <a href="/jira/secure/LabAction.jspa" id="a-link"> A tab </a></li>
+                            <li><a href="/jira/secure/LabAction.jspa" id="a-link"> A tab </a></li>
                             <li><a href="/jira/secure/TabBAction.jspa" id="b-link"> B tab </a></li>
-                            <li><a href="/jira/secure/TabCAction.jspa" id="c-link"> C tab </a></li>
+                            <li class="aui-nav-selected">
+                            <a href="/jira/secure/TabCAction.jspa" id="c-link"> C tab </a></li>
                         </ul>
                     </div>
                 </div>
             </nav>
         </div>
         <section class="aui-page-panel-content">
-            <h2>1 tab </h2>
+            <h2> 3 tab </h2>
             <br>
-            Some text
+            Some text too
         </section>
     </div>
 </div>
