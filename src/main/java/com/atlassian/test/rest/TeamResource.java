@@ -18,10 +18,10 @@ import javax.ws.rs.core.Response;
 import java.util.List;
 
 @Path("teams")
+@AnonymousAllowed
 public class TeamResource {
 
     @GET
-    @AnonymousAllowed
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
 //    @Path("/")
     public Response getTeams() throws Exception {
@@ -30,6 +30,8 @@ public class TeamResource {
     }
 
     @POST
+    @Consumes ({ MediaType.APPLICATION_JSON })
+    @Produces ({ MediaType.APPLICATION_JSON })
     public Response addTeam(String request) throws Exception {
 
         JSONObject jsonObject = new JSONObject(request);

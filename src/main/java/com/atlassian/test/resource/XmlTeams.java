@@ -17,10 +17,10 @@ public class XmlTeams {
         this.count = count;
         this.teams = teams;
     }
+
     @XmlElement
     public long count;
     @XmlElement
     public List<XmlTeam> teams;
-
 
 }

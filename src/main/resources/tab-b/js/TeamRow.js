@@ -1,6 +1,6 @@
 jQuery.namespace("JIRA.Admin.Team.TeamRow");
 
-JIRA.Admin.Team.TeamRow = JIRA.RestfulTable.Row.extend({
+JIRA.Admin.Team.TeamRow = AJS.RestfulTable.Row.extend({
     initialize: function() {
         JIRA.RestfulTable.Row.prototype.initialize.apply(this, arguments);
         this.events["click .project-config-team-delete"] = "_delete";
@@ -14,6 +14,7 @@ JIRA.Admin.Team.TeamRow = JIRA.RestfulTable.Row.extend({
     },
 
     render: function() {
+        alert(2);
         var data = this.model.toJSON(),
             id = this.model.get("id"),
             $el = this.$el;
@@ -21,6 +22,7 @@ JIRA.Admin.Team.TeamRow = JIRA.RestfulTable.Row.extend({
         $el.html(JIRA.Templates.Team.teamRow({
             team: data
         }));
+
         return this;
     }
 });

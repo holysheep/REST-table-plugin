@@ -1,0 +1,42 @@
+{namespace JIRA.Templates.Team}
+
+/**
+ * @param team
+ */
+{template .teamRow}
+<td class="jira-restfultable-icon project-config-team-icon">
+    <span class="project-config-icon project-config-icon-team"></span>
+</td>
+<td class="project-config-team-name">
+    <span class="jira-restfultable-editable" data-field-name="name">
+    <span class="icon icon-edit-sml"></span>
+        {$team.name}
+    </span>
+    </td>
+    <td class="project-config-team-created">
+        {$team.created}
+    </td>
+    <td class="jira-restfultable-operations">
+    <ul class="first ops">
+        <li class="last">
+            <a class="project-config-team-delete button first last" href="#">Delete</a>
+        </li>
+    </ul>
+    </td>
+{/template}
+
+/**
+ * @param team
+ */
+{template .editTeamRow}
+<td>
+    <input name="name" id="project-config-team-name-input" type="text" class="text"
+             value="{$team.name ? $team.name : ''}"/>
+</td>
+<td class="project-config-team-created">
+{$team.created ? $team.created : ''}
+</td>
+<td class="project-config-team-name">
+
+</td>
+{/template}

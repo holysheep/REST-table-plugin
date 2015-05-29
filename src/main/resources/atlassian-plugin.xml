@@ -11,20 +11,29 @@
 
   <!-- add i18n resource -->
   <resource type="i18n" name="i18n" location="testplugin"/>
+
   <!-- add web resources -->
   <web-resource key="my-resources" name="testplugin Web Resources">
+    <dependency>com.atlassian.auiplugin:ajs</dependency>
+    <dependency>com.atlassian.auiplugin:aui-experimental-restfultable</dependency>
     <dependency>com.atlassian.jira.jira-project-config-plugin:project-config-global</dependency>
     <resource type="download" name="images/" location="/images"/>
-    <resource type="download" name="team-soy.js" location="main-action/templates/team.soy"/>
-    <resource type="download" name="TeamRow.js" location="main-action/js/TeamRow.js"/>
-    <resource type="download" name="EditTeamRow.js" location="main-action/js/EditTeamRow.js"/>
-    <resource type="download" name="team-init.js" location="main-action/js/team-init.js"/>
+    <resource type="download" name="team-soy.js" location="tab-b/templates/team.soy"/>
+    <resource type="download" name="team-init.js" location="tab-b/js/team-init.js"/>
+    <resource type="download" name="TeamRow.js" location="tab-b/js/TeamRow.js"/>
+    <resource type="download" name="EditTeamRow.js" location="tab-b/js/EditTeamRow.js"/>
+
+    <!--<resource type="download" name="TeamsTable.js" location="main-action/js/TeamsTable.js"/>-->
     <context>my-resources</context>
 
     <!-- transformation for soy file-->
     <transformation extension="soy">
-      <transformer key="jiraSoyTransformer"/>
+      <transformer key="soyTransformer">
+        <!--<functions>com.atlassian.jira.plugins.soy:soy-core-functions</functions>-->
+      </transformer>
     </transformation>
+
+    <!-- transform calls to AJS.getText() inside JS files -->
     <transformation extension="js">
       <transformer key="jsI18n"/>
     </transformation>
