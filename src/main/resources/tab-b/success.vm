@@ -26,11 +26,7 @@
             </nav>
         </div>
         <section class="aui-page-panel-content">
-            <form action="/jira/secure/TabBAction!add.jspa" method="POST">
-                <input type="text" name="name"/>
-                <input type="submit" value="Add"/>
-            </form>
-            <table class="aui" id="project-config-teams-table">
+            <table id="project-config-teams-table">
                 <thead>
 ##                <tr>
 ##                    <th><!--icon--></th>

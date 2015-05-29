@@ -10,9 +10,6 @@ import java.util.List;
 //@XmlAccessorType(XmlAccessType.FIELD)
 public class XmlTeams {
 
-    public XmlTeams() {
-    }
-
     public XmlTeams (long count, List<XmlTeam> teams) {
         this.count = count;
         this.teams = teams;

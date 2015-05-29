@@ -1,9 +1,8 @@
 jQuery(function () {
-    alert(1);
     var $table = AJS.$("#project-config-teams-table");
 
     function getResourceURL() {
-        return contextPath + "/rest/teams/1.0/teams.json";
+        return contextPath + "/rest/teams/1.0/teams";
     }
 
     function getTeam(callback) {
@@ -21,13 +20,13 @@ jQuery(function () {
     }
 
     getTeam(function (teams) {
-        window.t = teams;
-        alert(JSON.stringify(teams));
+        window.ttt = teams;
         JIRA.Admin.TeamTable = new AJS.RestfulTable({
             el: $table,
             editable: true,
+            allowCreate:true,
             url: getResourceURL(),
-            entries: teams,
+            entries: teams, // is not being picked up by restfultable, hack below
             resources: {
                 all: getResourceURL(),
                 self: getResourceURL()
@@ -48,6 +47,9 @@ jQuery(function () {
                 row: JIRA.Admin.Team.TeamRow
             }
         });
+        for (var i = 0; i < teams.length; i++) {
+            JIRA.Admin.TeamTable.addRow(teams[i]);
+        }
         //jQuery(".jira-restfultable-init").remove();
         JIRA.userhover($table);
     });

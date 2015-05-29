@@ -2,21 +2,19 @@ jQuery.namespace("JIRA.Admin.Team.EditTeamRow");
 
 JIRA.Admin.Team.EditTeamRow = AJS.RestfulTable.EditRow.extend({
     submit: function() {
-        window.t = this;
-        window.a = arguments;
+        var input = this.$el.get(0).firstChild.firstChild;
 
         AJS.$.ajax({
             url: contextPath + '/rest/teams/1.0/teams.json',
             type: 'POST',
             contentType:"application/json; charset=utf-8",
             data: JSON.stringify({
-                name: t.$el.get(0).firstChild.firstChild.value
+                name: input.value
             }),
             dataType: 'json'
         }).done(function(data) {
-            console.warn(data);
-            // JIRA.Admin.TeamTable.refresh()
-            location.reload();
+            JIRA.Admin.TeamTable.addRow(data);
+            input.value = '';
         });
         //AJS.RestfulTable.EditRow.prototype.submit.apply(this, ["test"]);
     },

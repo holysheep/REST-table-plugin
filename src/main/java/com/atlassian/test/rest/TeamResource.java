@@ -19,25 +19,32 @@ import java.util.List;
 
 @Path("teams")
 @AnonymousAllowed
+@Produces({MediaType.APPLICATION_JSON})
 public class TeamResource {
 
     @GET
-    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    @Produces({MediaType.APPLICATION_JSON})
 //    @Path("/")
     public Response getTeams() throws Exception {
         List<XmlTeam> xmlTeams = Lists.newArrayList();
+
+        for (TeamEntity team : DAOFactory.getInstance().getTeamDAO().getTeams()) {
+            xmlTeams.add(Mapper.toXmlTeam(team));
+        }
         return Response.ok(new XmlTeams(xmlTeams.size(), xmlTeams)).build();
     }
 
     @POST
-    @Consumes ({ MediaType.APPLICATION_JSON })
-    @Produces ({ MediaType.APPLICATION_JSON })
+    @Consumes ({MediaType.APPLICATION_JSON })
+    @Produces ({MediaType.APPLICATION_JSON })
     public Response addTeam(String request) throws Exception {
+        System.out.println("ADD ==========");
 
-        JSONObject jsonObject = new JSONObject(request);
+        JSONObject jsonObject = new JSONObject(request.substring(request.indexOf("{")));
         String name = jsonObject.getString("name");
         Team team = new TeamImpl(name);
         TeamEntity teamEntity = DAOFactory.getInstance().getTeamDAO().addTeam(team);
+        System.out.println(team);
         return Response.ok(Mapper.toXmlTeam(teamEntity)).build();
     }
 
