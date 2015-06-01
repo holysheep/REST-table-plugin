@@ -42,9 +42,9 @@ public class TeamResource {
 
         JSONObject jsonObject = new JSONObject(request.substring(request.indexOf("{")));
         String name = jsonObject.getString("name");
-        Team team = new TeamImpl(name);
+        String date = jsonObject.getString("created");
+        Team team = new TeamImpl(name, date );
         TeamEntity teamEntity = DAOFactory.getInstance().getTeamDAO().addTeam(team);
-        System.out.println(team);
         return Response.ok(Mapper.toXmlTeam(teamEntity)).build();
     }
 
@@ -62,15 +62,18 @@ public class TeamResource {
     public Response updateRow(@PathParam("id") String idString, String request) throws Exception {
 
         String name;
+        String created;
         long id = Long.parseLong(idString);
         JSONObject jsonObject = new JSONObject(request);
         try {
             name = jsonObject.getString("name");
+            created = jsonObject.getString("created");
         } catch (JSONException ex) {
             name = null;
+            created = null;
         }
 
-        Team team = new TeamImpl(name);
+        Team team = new TeamImpl(name, created);
         TeamEntity teamEntity = DAOFactory.getInstance().getTeamDAO().updateTeam(id, team);
         return Response.ok(Mapper.toXmlTeam(teamEntity)).build();
     }

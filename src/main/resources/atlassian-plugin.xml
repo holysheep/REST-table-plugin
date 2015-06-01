@@ -22,6 +22,7 @@
     <resource type="download" name="team-init.js" location="tab-b/js/team-init.js"/>
     <resource type="download" name="TeamRow.js" location="tab-b/js/TeamRow.js"/>
     <resource type="download" name="EditTeamRow.js" location="tab-b/js/EditTeamRow.js"/>
+    <resource type="download" name="DatePicker.js" location="tab-b/js/DatePicker.js"/>
 
     <!--<resource type="download" name="TeamsTable.js" location="main-action/js/TeamsTable.js"/>-->
     <context>my-resources</context>

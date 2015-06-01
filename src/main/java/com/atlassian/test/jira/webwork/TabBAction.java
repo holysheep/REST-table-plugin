@@ -23,9 +23,10 @@ public class TabBAction extends JiraWebActionSupport {
 
     public String doAdd() throws Exception {
         String name = getHttpRequest().getParameterValues("name")[0];
-        Team team = new TeamImpl(name);
+        String created = getHttpRequest().getParameterValues("created")[0];
+        Team team = new TeamImpl(name, created);
         DAOFactory.getInstance().getTeamDAO().addTeam(team);
-        ServletActionContext.getResponse().sendRedirect("/jira/secure/TabBAction.jspa");
+        ServletActionContext.getResponse().sendRedirect("/secure/TabBAction.jspa");
         System.out.println("==========");
         return NONE;
     }

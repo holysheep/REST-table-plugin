@@ -2,16 +2,21 @@ package com.atlassian.test.testplugin.DAO.impl;
 
 
 import com.atlassian.activeobjects.external.ActiveObjects;
+import com.atlassian.jira.datetime.DateTimeFormatter;
 import com.atlassian.sal.api.transaction.TransactionCallback;
 import com.atlassian.test.testplugin.DAO.TeamDAO;
 import com.atlassian.test.testplugin.entity.TeamEntity;
 import com.atlassian.test.testplugin.pojo.Team;
 import net.java.ao.Query;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+
 
 public class TeamDAOImpl implements TeamDAO {
 
     private final ActiveObjects ao;
+    private DateTimeFormatter dateTimeFormatter;
 
     public TeamDAOImpl(ActiveObjects ao) {
         this.ao = ao;
@@ -25,11 +30,24 @@ public class TeamDAOImpl implements TeamDAO {
             public TeamEntity doInTransaction() {
                 TeamEntity entity = ao.create(TeamEntity.class);
                 entity.setName(team.getName());
-                entity.setCreated(new Date(System.currentTimeMillis()));
+                String tt = team.getCreated();
+                convertStringToDate(tt);
+                entity.setCreated(tt);
                 entity.save();
                 return entity;
             }
         });
+    }
+
+    public Date convertStringToDate(String dateString) {
+        Date date = null;
+        DateFormat df = new SimpleDateFormat("MM/dd/yyyy' 'HH:mm:ss:S");
+        try {
+            date = df.parse(dateString);
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
+        return date;
     }
 
     @Override
@@ -44,7 +62,7 @@ public class TeamDAOImpl implements TeamDAO {
 
     @Override
     public TeamEntity deleteTeam(final long id) throws Exception {
-        return ao.executeInTransaction(new TransactionCallback<TeamEntity>(){
+        return ao.executeInTransaction(new TransactionCallback<TeamEntity>() {
             @Override
             public TeamEntity doInTransaction() {
                 TeamEntity entity = ao.find(TeamEntity.class, Query.select().where("ID=?", id))[0];
@@ -64,6 +82,7 @@ public class TeamDAOImpl implements TeamDAO {
                 if (team.getName() != null) {
                     entity.setName(team.getName());
                 }
+
                 entity.save();
                 return entity;
 
