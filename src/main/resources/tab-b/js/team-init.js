@@ -24,6 +24,8 @@ jQuery(function () {
         JIRA.Admin.TeamTable = new AJS.RestfulTable({
             el: $table,
             editable: true,
+            allowReorder:true,
+            loadingMsg:"Loading you table...",
             allowCreate:true,
             url: getResourceURL(),
             entries: teams, // is not being picked up by restfultable, hack below

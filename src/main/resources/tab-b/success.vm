@@ -16,10 +16,10 @@
                 <div class="aui-navgroup-primary">
                     <div class="admin-menu-links">
                         <ul class="aui-nav">
-                            <li> <a href="/secure/LabAction.jspa" id="a-link"> A tab </a></li>
+                            <li> <a href="/jira/secure/LabAction.jspa" id="a-link"> A tab </a></li>
                             <li class="aui-nav-selected">
-                            <a href="/secure/TabBAction.jspa" id="b-link"> B tab </a></li>
-                            <li><a href="/secure/TabCAction.jspa" id="c-link"> C tab </a></li>
+                            <a href="/jira/secure/TabBAction.jspa" id="b-link"> B tab </a></li>
+                            <li><a href="/jira/secure/TabCAction.jspa" id="c-link"> C tab </a></li>
                         </ul>
                     </div>
                 </div>

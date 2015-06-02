@@ -45,7 +45,7 @@ public class TeamDAOImpl implements TeamDAO {
         try {
             date = df.parse(dateString);
         } catch (Exception ex) {
-            System.out.println(ex);
+            System.out.println("====");
         }
         return date;
     }
