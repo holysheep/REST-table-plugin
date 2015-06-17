@@ -1,103 +1,86 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <atlassian-plugin key="${project.groupId}.${project.artifactId}" name="${project.name}" plugins-version="2">
-  <plugin-info>
-    <description>${project.description}</description>
-    <version>${project.version}</version>
-    <vendor name="${project.organization.name}" url="${project.organization.url}"/>
-    <param name="plugin-icon">images/pluginIcon.png</param>
-    <param name="plugin-logo">images/pluginLogo.png</param>
-  </plugin-info>
+    <plugin-info>
+        <description>${project.description}</description>
+        <version>${project.version}</version>
+        <vendor name="${project.organization.name}" url="${project.organization.url}"/>
+        <param name="plugin-icon">images/pluginIcon.png</param>
+        <param name="plugin-logo">images/pluginLogo.png</param>
+    </plugin-info>
 
-  <!-- add i18n resource -->
-  <resource type="i18n" name="i18n" location="testplugin"/>
+    <!-- add i18n resource -->
+    <resource type="i18n" name="i18n" location="testplugin"/>
 
-  <!-- add web resources -->
-  <web-resource key="my-resources" name="testplugin Web Resources">
-    <dependency>com.atlassian.auiplugin:ajs</dependency>
-    <dependency>com.atlassian.auiplugin:aui-experimental-restfultable</dependency>
-    <dependency>com.atlassian.jira.jira-project-config-plugin:project-config-global</dependency>
-    <resource type="download" name="images/" location="/images"/>
-    <resource type="download" name="team-soy.js" location="tab-b/templates/team.soy"/>
-    <resource type="download" name="team-init.js" location="tab-b/js/team-init.js"/>
-    <resource type="download" name="TeamRow.js" location="tab-b/js/TeamRow.js"/>
-    <resource type="download" name="EditTeamRow.js" location="tab-b/js/EditTeamRow.js"/>
-    <resource type="download" name="DatePicker.js" location="tab-b/js/DatePicker.js"/>
+    <!-- add web resources -->
+    <web-resource key="my-resources" name="testplugin Web Resources">
+        <dependency>com.atlassian.auiplugin:ajs</dependency>
+        <dependency>com.atlassian.auiplugin:aui-experimental-restfultable</dependency>
+        <dependency>com.atlassian.jira.jira-project-config-plugin:project-config-global</dependency>
+        <resource type="download" name="images/" location="/images"/>
+        <resource type="download" name="team-soy.js" location="tab-b/templates/team.soy"/>
+        <resource type="download" name="team-init.js" location="tab-b/js/team-init.js"/>
+        <resource type="download" name="TeamRow.js" location="tab-b/js/TeamRow.js"/>
+        <resource type="download" name="EditTeamRow.js" location="tab-b/js/EditTeamRow.js"/>
+        <resource type="download" name="DatePicker.js" location="tab-b/js/DatePicker.js"/>
 
-    <!--<resource type="download" name="TeamsTable.js" location="main-action/js/TeamsTable.js"/>-->
-    <context>my-resources</context>
+        <!--<resource type="download" name="TeamsTable.js" location="main-action/js/TeamsTable.js"/>-->
+        <context>my-resources</context>
 
-    <!-- transformation for soy file-->
-    <transformation extension="soy">
-      <transformer key="soyTransformer">
-        <!--<functions>com.atlassian.jira.plugins.soy:soy-core-functions</functions>-->
-      </transformer>
-    </transformation>
+        <!-- transformation for soy file-->
+        <transformation extension="soy">
+            <transformer key="soyTransformer">
+                <!--<functions>com.atlassian.jira.plugins.soy:soy-core-functions</functions>-->
+            </transformer>
+        </transformation>
 
-    <!-- transform calls to AJS.getText() inside JS files -->
-    <transformation extension="js">
-      <transformer key="jsI18n"/>
-    </transformation>
-  </web-resource>
+        <!-- transform calls to AJS.getText() inside JS files -->
+        <transformation extension="js">
+            <transformer key="jsI18n"/>
+        </transformation>
+    </web-resource>
 
-  <!-- publish component -->
-  <component key="myPluginComponent" class="com.atlassian.test.testplugin.MyPluginComponentImpl" public="true">
-    <interface>com.atlassian.test.testplugin.MyPluginComponent</interface>
-  </component>
+    <!-- publish component -->
+    <component key="myPluginComponent" class="com.atlassian.test.testplugin.MyPluginComponentImpl" public="true">
+        <interface>com.atlassian.test.testplugin.MyPluginComponent</interface>
+    </component>
 
-  <!-- import from the product container -->
-  <component-import key="applicationProperties" interface="com.atlassian.sal.api.ApplicationProperties"/>
+    <!-- import from the product container -->
+    <component-import key="applicationProperties" interface="com.atlassian.sal.api.ApplicationProperties"/>
 
-  <!-- component for ActiveObject -->
-  <component-import key="ao" name="Active Objects components" interface="com.atlassian.activeobjects.external.ActiveObjects">
-    <description>Access to the Active Objects service</description>
-  </component-import>
+    <!-- component for ActiveObject -->
+    <component-import key="ao" name="Active Objects components"
+                      interface="com.atlassian.activeobjects.external.ActiveObjects">
+        <description>Access to the Active Objects service</description>
+    </component-import>
 
-  <!-- ActiveObject module key -->
-  <ao key="ao-module">
-    <description>The module configuring the Active Objects service used by this plugin</description>
-    <entity>com.atlassian.test.testplugin.entity.TeamEntity</entity>
-  </ao>
+    <!-- ActiveObject module key -->
+    <ao key="ao-module">
+        <description>The module configuring the Active Objects service used by this plugin</description>
+        <entity>com.atlassian.test.testplugin.entity.TeamEntity</entity>
+    </ao>
 
-  <!-- component for DAOFactory -->
-  <component key="dao-factory" class="com.atlassian.test.testplugin.DAO.DAOFactory"/>
+    <!-- component for DAOFactory -->
+    <component key="dao-factory" class="com.atlassian.test.testplugin.DAO.DAOFactory"/>
 
-  <!-- Laboratory top menu link & Action -->
-  <web-item name="Laboratory" i18n-name-key="laboratory.name" key="lab-menu-link" section="system.top.navigation.bar" weight="1000">
-    <description key="lab-menu-link.description">The Lab Menu Link Plugin</description>
-    <label key="lab-menu-link.label"/>
-    <link linkId="lab-menu-link-link">/secure/LabAction.jspa</link>
-  </web-item>
-  <webwork1 key="main-action" name="MainAction" i18n-name-key="main-action.name">
-    <description key="main-action.description">The LabAction Plugin</description>
-    <actions>
-      <action name="com.atlassian.test.jira.webwork.LabAction" alias="LabAction">
-        <view name="success">/main-action/success.vm</view>
-      </action>
-    </actions>
-  </webwork1>
+    <!-- Laboratory top menu link & Action -->
+    <web-item name="Laboratory" i18n-name-key="laboratory.name" key="lab-menu-link" section="system.top.navigation.bar"
+              weight="1000">
+        <description key="lab-menu-link.description">The Lab Menu Link Plugin</description>
+        <label key="lab-menu-link.label"/>
+        <link linkId="lab-menu-link-link">/secure/MainAction.jspa</link>
+    </web-item>
 
-  <rest key="team-resource" path="/teams" version="1.0">
-    <description>Provides REST plugin service</description>
-  </rest>
+    <rest key="team-resource" path="/teams" version="1.0">
+        <description>Provides REST plugin service</description>
+    </rest>
 
-  <!-- TABS WEBWORKS -->
-
-  <webwork1 key="tabB-action" name="tabB-action" i18n-name-key="tabB-action.name">
-    <description key="tabB-action.description">Tab B</description>
-    <actions>
-      <action name="com.atlassian.test.jira.webwork.TabBAction" alias="TabBAction">
-        <view name="success">/tab-b/success.vm</view>
-      </action>
-    </actions>
-  </webwork1>
-  <webwork1 key="tabC-action" name="tabC-action" i18n-name-key="tabC-action.name">
-    <description key="tabC-action.description">Tab C</description>
-    <actions>
-      <action name="com.atlassian.test.jira.webwork.TabCAction" alias="TabCAction">
-        <view name="success">/tab-c/success.vm</view>
-      </action>
-    </actions>
-  </webwork1>
-
+    <webwork1 key="tabB-action" name="tabB-action" i18n-name-key="tabB-action.name">
+        <description key="tabB-action.description">Tab B</description>
+        <actions>
+            <action name="com.atlassian.test.jira.webwork.MainAction" alias="MainAction">
+                <view name="success">/tab-b/success.vm</view>
+            </action>
+        </actions>
+    </webwork1>
 </atlassian-plugin>

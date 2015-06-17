@@ -1,6 +1,5 @@
 package com.atlassian.test.testplugin.DAO.impl;
 
-
 import com.atlassian.activeobjects.external.ActiveObjects;
 import com.atlassian.jira.datetime.DateTimeFormatter;
 import com.atlassian.sal.api.transaction.TransactionCallback;
@@ -8,6 +7,7 @@ import com.atlassian.test.testplugin.DAO.TeamDAO;
 import com.atlassian.test.testplugin.entity.TeamEntity;
 import com.atlassian.test.testplugin.pojo.Team;
 import net.java.ao.Query;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -24,7 +24,6 @@ public class TeamDAOImpl implements TeamDAO {
 
     @Override
     public TeamEntity addTeam(final Team team) throws Exception {
-
         return ao.executeInTransaction(new TransactionCallback<TeamEntity>() {
             @Override
             public TeamEntity doInTransaction() {
@@ -41,7 +40,7 @@ public class TeamDAOImpl implements TeamDAO {
 
     public Date convertStringToDate(String dateString) {
         Date date = null;
-        DateFormat df = new SimpleDateFormat("MM/dd/yyyy' 'HH:mm:ss:S");
+        DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
         try {
             date = df.parse(dateString);
         } catch (Exception ex) {
@@ -78,14 +77,11 @@ public class TeamDAOImpl implements TeamDAO {
             @Override
             public TeamEntity doInTransaction() {
                 TeamEntity entity = ao.find(TeamEntity.class, Query.select().where("ID=?", id))[0];
-
                 if (team.getName() != null) {
                     entity.setName(team.getName());
                 }
-
                 entity.save();
                 return entity;
-
             }
         });
     }

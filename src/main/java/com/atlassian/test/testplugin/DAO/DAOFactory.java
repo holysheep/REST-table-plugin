@@ -1,6 +1,5 @@
 package com.atlassian.test.testplugin.DAO;
 
-
 import com.atlassian.activeobjects.external.ActiveObjects;
 import com.atlassian.test.testplugin.DAO.impl.TeamDAOImpl;
 

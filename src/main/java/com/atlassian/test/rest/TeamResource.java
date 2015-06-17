@@ -24,7 +24,6 @@ public class TeamResource {
 
     @GET
     @Produces({MediaType.APPLICATION_JSON})
-//    @Path("/")
     public Response getTeams() throws Exception {
         List<XmlTeam> xmlTeams = Lists.newArrayList();
 
@@ -35,15 +34,14 @@ public class TeamResource {
     }
 
     @POST
-    @Consumes ({MediaType.APPLICATION_JSON })
-    @Produces ({MediaType.APPLICATION_JSON })
+    @Consumes({MediaType.APPLICATION_JSON})
+    @Produces({MediaType.APPLICATION_JSON})
     public Response addTeam(String request) throws Exception {
-        System.out.println("ADD ==========");
 
         JSONObject jsonObject = new JSONObject(request.substring(request.indexOf("{")));
         String name = jsonObject.getString("name");
         String date = jsonObject.getString("created");
-        Team team = new TeamImpl(name, date );
+        Team team = new TeamImpl(name, date);
         TeamEntity teamEntity = DAOFactory.getInstance().getTeamDAO().addTeam(team);
         return Response.ok(Mapper.toXmlTeam(teamEntity)).build();
     }
@@ -63,6 +61,7 @@ public class TeamResource {
 
         String name;
         String created;
+
         long id = Long.parseLong(idString);
         JSONObject jsonObject = new JSONObject(request);
         try {

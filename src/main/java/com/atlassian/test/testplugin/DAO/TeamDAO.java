@@ -1,6 +1,5 @@
 package com.atlassian.test.testplugin.DAO;
 
-
 import com.atlassian.test.testplugin.entity.TeamEntity;
 import com.atlassian.test.testplugin.pojo.Team;
 

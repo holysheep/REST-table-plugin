@@ -8,7 +8,7 @@ import com.atlassian.test.testplugin.pojo.Team;
 import com.atlassian.test.testplugin.pojo.impl.TeamImpl;
 import webwork.action.ServletActionContext;
 
-public class TabBAction extends JiraWebActionSupport {
+public class MainAction extends JiraWebActionSupport {
 
     private Project project;
     private TeamEntity[] teams;
@@ -26,7 +26,7 @@ public class TabBAction extends JiraWebActionSupport {
         String created = getHttpRequest().getParameterValues("created")[0];
         Team team = new TeamImpl(name, created);
         DAOFactory.getInstance().getTeamDAO().addTeam(team);
-        ServletActionContext.getResponse().sendRedirect("/jira/secure/TabBAction.jspa");
+        ServletActionContext.getResponse().sendRedirect("/secure/MainAction.jspa");
         return NONE;
     }
 

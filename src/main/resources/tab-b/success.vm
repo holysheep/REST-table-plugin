@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <title>Laboratory plugin Tab B</title>
+    <title>Laboratory plugin</title>
     <meta name="projectKey" content="$project.getKey()"/>
     <meta name="projectId" content="$project.getId()"/>
     $webResourceManager.requireResourcesForContext("my-resources")
@@ -9,38 +9,35 @@
 <body>
 <br>
 <br>
-<div class="aui-page-panel">
-    <div class="aui-page-panel-inner">
-        <div class="aui-page-panel-nav">
-            <nav class="aui-navgroup aui-navgroup-vertical">
-                <div class="aui-navgroup-primary">
-                    <div class="admin-menu-links">
-                        <ul class="aui-nav">
-                            <li> <a href="/jira/secure/LabAction.jspa" id="a-link"> A tab </a></li>
-                            <li class="aui-nav-selected">
-                            <a href="/jira/secure/TabBAction.jspa" id="b-link"> B tab </a></li>
-                            <li><a href="/jira/secure/TabCAction.jspa" id="c-link"> C tab </a></li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-        </div>
-        <section class="aui-page-panel-content">
+<div class="aui-tabs vertical-tabs" role="application">
+    <ul class="tabs-menu" role="tablist">
+        <li class="menu-item active-pane" role="presentation">
+            <a href="#tabs-example-first" id="aui-uid-1-1433245398252" role="tab" aria-selected="true"><strong>Tab A</strong></a>
+        </li>
+        <li class="menu-item" role="presentation">
+            <a href="#tabs-example-second" id="aui-uid-0-1433245398252" role="tab" aria-selected="true"><strong>Tab B</strong></a>
+        </li>
+        <li class="menu-item" role="presentation">
+            <a href="#tabs-example-third" id="aui-uid-0-1433245398252" role="tab" aria-selected="true"><strong>Tab C</strong></a>
+        </li>
+
+    </ul>
+    <div class="tabs-pane active-pane" id="tabs-example-first" role="tabpanel" aria-hidden="false">
+        <h2>This is Tab 1</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+    </div>
+    <div class="tabs-pane" id="tabs-example-second" role="tabpanel" aria-hidden="false">
+        <h2> </h2>
             <table id="project-config-teams-table">
                 <thead>
-##                <tr>
-##                    <th><!--icon--></th>
-##                    <th>name</th>
-##                    <th><!--icon--></th>
-##                    <th>created</th>
-##                    <th><!--buttons--></th>
-##                    <th><!--throbber--></th>
-##                </tr>
                 </thead>
                 <tbody>
                 </tbody>
             </table>
-        </section>
+    </div>
+    <div class="tabs-pane" id="tabs-example-third" role="tabpanel" aria-hidden="true">
+        <h2>This is Tab 3</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
     </div>
 </div>
 </body>

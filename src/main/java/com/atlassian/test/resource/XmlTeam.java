@@ -15,5 +15,4 @@ public class XmlTeam {
 
     @XmlElement
     public String created;
-
 }

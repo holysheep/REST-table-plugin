@@ -24,9 +24,9 @@ jQuery(function () {
         JIRA.Admin.TeamTable = new AJS.RestfulTable({
             el: $table,
             editable: true,
-            allowReorder:true,
-            loadingMsg:"Loading you table...",
-            allowCreate:true,
+            allowReorder: true,
+            loadingMsg: "Loading you table...",
+            allowCreate: true,
             url: getResourceURL(),
             entries: teams, // is not being picked up by restfultable, hack below
             resources: {
@@ -43,7 +43,6 @@ jQuery(function () {
                     header: "Created"
                 }
             ],
-            noEntriesMsg: 'There are currently no teams',
             views: {
                 editRow: JIRA.Admin.Team.EditTeamRow,
                 row: JIRA.Admin.Team.TeamRow
@@ -52,7 +51,6 @@ jQuery(function () {
         for (var i = 0; i < teams.length; i++) {
             JIRA.Admin.TeamTable.addRow(teams[i]);
         }
-        //jQuery(".jira-restfultable-init").remove();
         JIRA.userhover($table);
     });
 });
